@@ -269,11 +269,11 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#1e2128] text-gray-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       {/* Header */}
-      <div className="border-b border-gray-800 px-6 py-4">
-        <div className="flex items-start justify-between max-w-7xl mx-auto">
+      <div className="border-b border-gray-800" style={{ padding: '24px 25px' }}>
+        <div className="flex items-start justify-between max-w-7xl mx-auto" style={{paddingTop: '8px' }}>
           <div>
-            <div className="flex items-center gap-2 mb-0.5">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-cyan-400">
+            <div className="flex items-center gap-2 mb-1">
+              <svg width="38" height="38" viewBox="0 0 24 24" fill="none" className="text-cyan-400">
                 <rect x="7" y="6" width="10" height="11" stroke="currentColor" strokeWidth="1.5" />
                 <rect x="9.5" y="8.5" width="1.5" height="1.5" fill="currentColor" />
                 <rect x="13" y="8.5" width="1.5" height="1.5" fill="currentColor" />
@@ -284,65 +284,61 @@ export default function App() {
                 <line x1="9" y1="17" x2="9" y2="20" stroke="currentColor" strokeWidth="1.5" />
                 <line x1="15" y1="17" x2="15" y2="20" stroke="currentColor" strokeWidth="1.5" />
               </svg>
-              <h1 className="text-2xl font-medium text-white">buildwise</h1>
+              <h1 className="text-3xl font-medium text-white">buildwise</h1>
             </div>
-            <p className="text-xs text-gray-500 ml-6">reality-checked robot builds</p>
+            <p className="text-md text-gray-500 ml-6"style={{ padding: '0px 45px' }}>reality-checked robot builds</p>
           </div>
-          <div className="flex items-center gap-4">
-            <input
-              type="password"
-              value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
-              placeholder="key"
-              className="bg-transparent border-none outline-none text-xs text-gray-600 placeholder:text-gray-700 w-12"
-            />
-            <span className="text-xs text-gray-600">${budget}</span>
-          </div>
+
         </div>
       </div>
 
-      <main className="px-8 py-8 max-w-6xl mx-auto">
+      <main style={{ padding: '40px 60px', maxWidth: '1152px', margin: '0 auto' }}>
         {/* Step 1 - Describe Robot */}
         <div className="mb-12">
-          <div className="flex items-center gap-3 mb-6 cursor-pointer group" onClick={() => currentStep > 1 && setCurrentStep(1)}>
-            <div className="bg-cyan-400 text-black px-2.5 py-1 text-xs font-mono rounded">01</div>
-            <h2 className="text-sm text-gray-400 font-mono">describe robot</h2>
+          <div className="flex items-center gap-3 mb-6 cursor-pointer group"  onClick={() => currentStep > 1 && setCurrentStep(1)}>
+            <div className="bg-cyan-400 text-black font-mono rounded" style={{ padding: '6px 12px', fontSize: '14px' }}>01</div>
+            <h2 className="text-sm text-gray-400 font-mono">Describe robot</h2>
             {currentStep > 1 && <ChevronDown className="w-4 h-4 text-gray-600 group-hover:text-gray-500" />}
           </div>
 
           {currentStep === 1 && (
-            <div className="ml-0 border-l-2 border-cyan-400 pl-8">
+            <div className="ml-0 border-l-2 border-cyan-400" style={{ paddingLeft: '32px', paddingTop: '16px' }}>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="what should this thing do..."
-                className="w-full h-36 bg-[#13151a] text-gray-400 placeholder:text-gray-700 p-4 rounded-lg border border-gray-800 outline-none resize-none text-sm mb-6"
+                placeholder="Describe your robot in detail..."
+                className="w-full h-36 bg-[#13151a] text-gray-400 placeholder:text-gray-700 p-4 rounded-lg border border-gray-800 outline-none resize-none text-sm mb-6" style={{ padding: '15px 20px' , marginBottom: '24px' }}
               />
 
-              <div className="mb-6">
+              <div className="mb-6" style={{ marginBottom: '24px' }}>
                 <div className="text-xs text-gray-600 mb-3 uppercase tracking-wider font-mono">BUDGET</div>
                 <div className="inline-block bg-[#13151a] border border-gray-800 rounded px-4 py-2">
                   <input
                     type="text"
                     value={`$${budget}`}
                     onChange={(e) => setBudget(e.target.value.replace('$', ''))}
-                    className="bg-transparent border-none outline-none text-white text-sm w-16 font-mono"
+                    className="bg-transparent border-none outline-none text-white text-sm w-16 font-mono" style={{ padding: '4px 8px' }}
                   />
                 </div>
               </div>
 
-              <div className="mb-6">
+              <div className="mb-6" style={{ marginBottom: '24px' }}>
                 <div className="text-xs text-gray-600 mb-3 uppercase tracking-wider font-mono">TAGS</div>
-                <div className="flex flex-wrap gap-2">
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, auto)', gap: '8px', justifyContent: 'start' }}>
                   {quickPrompts.map(tag => (
                     <button
                       key={tag}
                       onClick={() => toggleTag(tag)}
-                      className={`px-3 py-1.5 rounded text-xs font-mono transition-colors ${
-                        selectedTags.includes(tag)
-                          ? 'bg-[#13151a] text-gray-400 border border-gray-700'
-                          : 'bg-transparent text-gray-700 border border-gray-800 hover:border-gray-700'
-                      }`}
+                      style={{
+                        padding: '8px 16px',
+                        fontSize: '13px',
+                        borderRadius: '6px',
+                        fontFamily: 'monospace',
+                        border: selectedTags.includes(tag) ? '1px solid #22d3ee' : '1px solid #374151',
+                        backgroundColor: selectedTags.includes(tag) ? '#164e63' : 'transparent',
+                        color: selectedTags.includes(tag) ? '#22d3ee' : '#9ca3af',
+                        cursor: 'pointer',
+                      }}
                     >
                       {tag}
                     </button>
@@ -352,9 +348,9 @@ export default function App() {
 
               <button
                 onClick={() => setCurrentStep(2)}
-                className="bg-cyan-400 text-black px-5 py-2 rounded text-xs font-medium hover:bg-cyan-300 transition-colors"
+                className="bg-cyan-400 text-black rounded font-medium hover:bg-cyan-300 transition-colors" style={{ padding: '10px 20px', fontSize: '13px' }}
               >
-                generate list &gt;
+                Generate list &gt;
               </button>
             </div>
           )}
@@ -370,32 +366,46 @@ export default function App() {
         {currentStep >= 2 && (
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-6 cursor-pointer group" onClick={() => currentStep > 2 && setCurrentStep(2)}>
-              <div className="bg-cyan-400 text-black px-2.5 py-1 text-xs font-mono rounded">02</div>
-              <h2 className="text-sm text-gray-400 font-mono">parts list</h2>
+              <div className="bg-cyan-400 text-black font-mono rounded" style={{ padding: '6px 12px', fontSize: '14px' }}>02</div>
+              <h2 className="text-sm text-gray-400 font-mono">Parts list</h2>
               {currentStep > 2 && <ChevronDown className="w-4 h-4 text-gray-600 group-hover:text-gray-500" />}
             </div>
 
             {currentStep === 2 && (
-              <div className="ml-0 border-l-2 border-cyan-400 pl-8">
-                {/* Tabs */}
-                <div className="flex gap-2 mb-6">
+              <div className="ml-0 border-l-2 border-cyan-400" style={{ paddingLeft: '32px', paddingTop: '16px' }}>
+                {/* Tabs — bigger, more prominent */}
+                <div className="flex gap-2 mb-8">
                   <button
                     onClick={() => setViewMode('parts')}
-                    className={`px-4 py-2 text-xs font-mono rounded transition-colors ${
-                      viewMode === 'parts'
-                        ? 'bg-cyan-400 text-black'
-                        : 'bg-transparent text-gray-600 hover:text-gray-500'
-                    }`}
+                    style={{
+                      padding: '10px 28px',
+                      fontSize: '15px',
+                      fontFamily: 'monospace',
+                      borderRadius: '6px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontWeight: viewMode === 'parts' ? '600' : '400',
+                      backgroundColor: viewMode === 'parts' ? '#22d3ee' : 'transparent',
+                      color: viewMode === 'parts' ? '#000' : '#6b7280',
+                      transition: 'all 0.15s',
+                    }}
                   >
                     parts
                   </button>
                   <button
                     onClick={() => setViewMode('community')}
-                    className={`px-4 py-2 text-xs font-mono rounded transition-colors ${
-                      viewMode === 'community'
-                        ? 'bg-cyan-400 text-black'
-                        : 'bg-transparent text-gray-600 hover:text-gray-500'
-                    }`}
+                    style={{
+                      padding: '10px 28px',
+                      fontSize: '15px',
+                      fontFamily: 'monospace',
+                      borderRadius: '6px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontWeight: viewMode === 'community' ? '600' : '400',
+                      backgroundColor: viewMode === 'community' ? '#22d3ee' : 'transparent',
+                      color: viewMode === 'community' ? '#000' : '#6b7280',
+                      transition: 'all 0.15s',
+                    }}
                   >
                     community
                   </button>
@@ -404,55 +414,121 @@ export default function App() {
                 {viewMode === 'parts' ? (
                   <>
                     {/* Stats */}
-                    <div className="flex gap-12 mb-6 text-sm">
+                    {/* Stats Card */}
+                    <div
+                      style={{
+                        backgroundColor: '#13151a',
+                        border: '1px solid #1f2937',
+                        borderRadius: '8px',
+                        padding: '20px 24px',
+                        display: 'flex',
+                        gap: '48px',
+                        marginBottom: '16px',
+                      }}
+                    >
                       <div>
-                        <div className="text-white text-2xl font-light">${totalCost.toFixed(2)}</div>
-                        <div className="text-gray-600 text-xs font-mono">total</div>
+                        <div className="text-white font-light" style={{ fontSize: '28px' }}>${totalCost.toFixed(2)}</div>
+                        <div className="text-gray-600 text-xs font-mono mt-1">total</div>
                       </div>
                       <div>
-                        <div className="text-white text-2xl font-light">{avgCompatibility}%</div>
-                        <div className="text-gray-600 text-xs font-mono">avg compat</div>
+                        <div className="text-white font-light" style={{ fontSize: '28px' }}>{avgCompatibility}%</div>
+                        <div className="text-gray-600 text-xs font-mono mt-1">avg compat</div>
                       </div>
                       <div>
-                        <div className="text-white text-2xl font-light">{components.length}</div>
-                        <div className="text-gray-600 text-xs font-mono">parts</div>
+                        <div className="text-white font-light" style={{ fontSize: '28px' }}>{components.length}</div>
+                        <div className="text-gray-600 text-xs font-mono mt-1">parts</div>
                       </div>
                     </div>
 
-                    {/* Components List */}
-                    <div className="space-y-4">
+                    {/* Component Cards */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                       {components.map((comp, idx) => (
-                        <div key={idx} className="group">
-                          <div className="flex items-start justify-between mb-1">
-                            <div className="flex-1">
-                              <div className="text-xs text-gray-600 font-mono mb-1 flex items-center gap-1.5">
-                                <span>{comp.category}</span>
-                                <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-50" />
+                        <div
+                          key={idx}
+                          style={{
+                            backgroundColor: '#13151a',
+                            border: '1px solid #1f2937',
+                            borderRadius: '8px',
+                            padding: '20px 24px',
+                          }}
+                          className="hover:border-gray-700 transition-colors group"
+                        >
+                          <div className="flex items-start justify-between">
+                            {/* Left: info */}
+                            <div style={{ flex: 1 }}>
+                              {/* Category */}
+                              <div
+                                className="font-mono uppercase"
+                                style={{ fontSize: '11px', color: '#4b5563', letterSpacing: '0.08em', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}
+                              >
+                                {comp.category}
+                                <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-40 transition-opacity" />
                               </div>
-                              <div className="text-white text-sm mb-1">{comp.name}</div>
-                              <div className="text-gray-600 text-xs mb-2">{comp.description}</div>
-                              <div className="flex items-center gap-3 text-xs font-mono">
-                                <a href="#" className="text-gray-600 hover:text-cyan-400 flex items-center gap-1">
+
+                              {/* Name */}
+                              <div
+                                className="text-white"
+                                style={{ fontSize: '16px', fontWeight: '500', marginBottom: '6px' }}
+                              >
+                                {comp.name}
+                              </div>
+
+                              {/* Description */}
+                              <div
+                                style={{ fontSize: '13px', color: '#6b7280', marginBottom: '14px', lineHeight: '1.5' }}
+                              >
+                                {comp.description}
+                              </div>
+
+                              {/* Links */}
+                              <div className="flex items-center gap-3">
+                                <a
+                                  href="#"
+                                  className="font-mono hover:text-cyan-400 transition-colors flex items-center gap-1"
+                                  style={{ fontSize: '12px', color: '#4b5563' }}
+                                >
                                   amzn <ExternalLink className="w-3 h-3" />
                                 </a>
-                                <a href="#" className="text-gray-600 hover:text-cyan-400 flex items-center gap-1">
+                                <a
+                                  href="#"
+                                  className="font-mono hover:text-cyan-400 transition-colors flex items-center gap-1"
+                                  style={{ fontSize: '12px', color: '#4b5563' }}
+                                >
                                   vendor <ExternalLink className="w-3 h-3" />
                                 </a>
                               </div>
                             </div>
-                            <div className="text-right ml-6">
-                              <div className="text-white text-sm mb-2">${comp.price.toFixed(2)}</div>
-                              <div className="flex items-center gap-2">
-                                <div className="w-20 h-1.5 bg-gray-800 rounded-full overflow-hidden">
+
+                            {/* Right: price + compat */}
+                            <div style={{ textAlign: 'right', marginLeft: '32px', flexShrink: 0 }}>
+                              <div
+                                className="text-white"
+                                style={{ fontSize: '18px', fontWeight: '500', marginBottom: '10px' }}
+                              >
+                                ${comp.price.toFixed(2)}
+                              </div>
+                              <div className="flex items-center gap-2" style={{ justifyContent: 'flex-end' }}>
+                                <div
+                                  style={{
+                                    width: '80px',
+                                    height: '5px',
+                                    backgroundColor: '#1f2937',
+                                    borderRadius: '999px',
+                                    overflow: 'hidden',
+                                  }}
+                                >
                                   <div
-                                    className="h-full rounded-full"
                                     style={{
+                                      height: '100%',
+                                      borderRadius: '999px',
                                       width: `${comp.compatibility}%`,
-                                      backgroundColor: getCompatibilityColor(comp.compatibility)
+                                      backgroundColor: getCompatibilityColor(comp.compatibility),
                                     }}
                                   />
                                 </div>
-                                <span className="text-xs text-gray-600 font-mono">{comp.compatibility}</span>
+                                <span className="font-mono" style={{ fontSize: '12px', color: '#6b7280' }}>
+                                  {comp.compatibility}
+                                </span>
                               </div>
                             </div>
                           </div>
@@ -462,7 +538,8 @@ export default function App() {
 
                     <button
                       onClick={() => setCurrentStep(3)}
-                      className="bg-cyan-400 text-black px-5 py-2 rounded text-xs font-medium hover:bg-cyan-300 transition-colors mt-6"
+                      className="bg-cyan-400 text-black rounded font-medium hover:bg-cyan-300 transition-colors"
+                      style={{ padding: '10px 20px', fontSize: '13px', marginTop: '24px' }}
                     >
                       render bot &gt;
                     </button>
@@ -535,7 +612,8 @@ export default function App() {
 
                     <button
                       onClick={() => setCurrentStep(3)}
-                      className="bg-cyan-400 text-black px-5 py-2 rounded text-xs font-medium hover:bg-cyan-300 transition-colors mt-6"
+                      className="bg-cyan-400 text-black rounded font-medium hover:bg-cyan-300 transition-colors"
+                      style={{ padding: '10px 20px', fontSize: '13px', marginTop: '24px' }}
                     >
                       continue &gt;
                     </button>
@@ -556,13 +634,13 @@ export default function App() {
         {currentStep >= 3 && (
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-6 cursor-pointer group" onClick={() => currentStep > 3 && setCurrentStep(3)}>
-              <div className="bg-cyan-400 text-black px-2.5 py-1 text-xs font-mono rounded">03</div>
-              <h2 className="text-sm text-gray-400 font-mono">3d render</h2>
+              <div className="bg-cyan-400 text-black font-mono rounded" style={{ padding: '6px 12px', fontSize: '14px' }}>03</div>
+              <h2 className="text-sm text-gray-400 font-mono">3D Render</h2>
               {currentStep > 3 && <ChevronDown className="w-4 h-4 text-gray-600 group-hover:text-gray-500" />}
             </div>
 
             {currentStep === 3 && (
-              <div className="ml-0 border-l-2 border-cyan-400 pl-8">
+              <div className="ml-0 border-l-2 border-cyan-400" style={{ paddingLeft: '32px', paddingTop: '16px' }}>
                 <div className="bg-[#13151a] border border-gray-800 rounded p-6 mb-6">
                   <div className="flex gap-8">
                     {/* 3D View */}
@@ -594,7 +672,7 @@ export default function App() {
 
                 <button
                   onClick={() => setCurrentStep(4)}
-                  className="bg-cyan-400 text-black px-5 py-2 rounded text-xs font-medium hover:bg-cyan-300 transition-colors"
+                  className="bg-cyan-400 text-black rounded font-medium hover:bg-cyan-300 transition-colors" style={{ padding: '10px 20px', fontSize: '13px' }}
                 >
                   Analyze Build &gt;
                 </button>
@@ -613,46 +691,44 @@ export default function App() {
         {currentStep >= 4 && (
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-6">
-              <div className="bg-cyan-400 text-black px-2.5 py-1 text-xs font-mono rounded">04</div>
-              <h2 className="text-sm text-gray-400 font-mono">reality check</h2>
+              <div className="bg-cyan-400 text-black font-mono rounded" style={{ padding: '6px 12px', fontSize: '14px' }}>04</div>
+              <h2 className="text-sm text-gray-400 font-mono">Reality Check</h2>
             </div>
 
-            <div className="ml-0 border-l-2 border-cyan-400 pl-8">
-              {/* Score Circle */}
-              <div className="bg-[#13151a] border border-yellow-600/50 rounded p-6 mb-6">
-                <div className="flex items-center gap-8">
-                  <div className="relative w-28 h-28">
-                    <svg className="w-28 h-28 transform -rotate-90">
+            <div className="ml-0 border-l-2 border-cyan-400" style={{ paddingLeft: '32px', paddingTop: '16px' }}>
+              {/* Score Circle — centered like Figma */}
+              <div className="bg-[#13151a] border border-yellow-600/50 rounded-lg mb-6" style={{ padding: '40px 32px' }}>
+                <div className="flex flex-col items-center text-center">
+                  <div className="relative w-32 h-32 mb-6">
+                    <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 128 128">
                       <circle
-                        cx="56"
-                        cy="56"
-                        r="50"
+                        cx="64"
+                        cy="64"
+                        r="56"
                         stroke="#374151"
                         strokeWidth="8"
                         fill="none"
                       />
                       <circle
-                        cx="56"
-                        cy="56"
-                        r="50"
+                        cx="64"
+                        cy="64"
+                        r="56"
                         stroke="#f59e0b"
                         strokeWidth="8"
                         fill="none"
-                        strokeDasharray={`${65 * 3.14} 314`}
+                        strokeDasharray={`${65 * 3.519} 351.9`}
                         strokeLinecap="round"
                       />
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center flex-col">
-                      <div className="text-white text-3xl font-light">65</div>
-                      <div className="text-gray-600 text-xs font-mono">/100</div>
+                      <div className="text-white font-light" style={{ fontSize: '36px', lineHeight: 1 }}>65</div>
+                      <div className="text-gray-600 text-xs font-mono mt-1">/ 100</div>
                     </div>
                   </div>
-                  <div>
-                    <div className="text-yellow-500 text-base font-mono uppercase tracking-wider mb-2">PROCEED WITH CAUTION</div>
-                    <div className="text-gray-400 text-sm">
-                      Your design has critical power and sensor placement issues that will cause failures in<br />
-                      real-world deployment. Address the high-severity items before building.
-                    </div>
+                  <div className="text-yellow-500 font-mono uppercase tracking-wider mb-3" style={{ fontSize: '14px' }}>PROCEED WITH CAUTION</div>
+                  <div className="text-gray-400 text-sm" style={{ maxWidth: '480px', lineHeight: '1.6' }}>
+                    Your design has critical power and sensor placement issues that will cause failures in
+                    real-world deployment. Address the high-severity items before building.
                   </div>
                 </div>
               </div>
@@ -664,8 +740,8 @@ export default function App() {
                   <div className="text-red-500 text-xs font-mono uppercase tracking-wider mb-4">WHAT WILL BREAK IN THE REAL WORLD</div>
                   <div className="space-y-3">
                     {Object.entries(issues).map(([severity, items]) => items.map((issue, idx) => (
-                      <div key={`${severity}-${idx}`} className="bg-[#13151a] border border-gray-800 rounded p-4">
-                        <div className="flex items-start gap-2 mb-2">
+                      <div key={`${severity}-${idx}`} className="bg-[#13151a] border border-gray-800 rounded-lg" style={{ padding: '16px 20px' }}>
+                        <div className="flex items-start gap-2 mb-3">
                           <span
                             className="text-xs px-2 py-0.5 rounded font-mono uppercase"
                             style={{
@@ -676,8 +752,8 @@ export default function App() {
                             {severity}
                           </span>
                         </div>
-                        <div className="text-white text-sm mb-1">{issue.title}</div>
-                        <div className="text-gray-500 text-xs">{issue.description}</div>
+                        <div className="text-white text-sm mb-2">{issue.title}</div>
+                        <div className="text-gray-500 text-xs" style={{ lineHeight: '1.5' }}>{issue.description}</div>
                       </div>
                     )))}
                   </div>
@@ -688,8 +764,8 @@ export default function App() {
                   <div className="text-cyan-400 text-xs font-mono uppercase tracking-wider mb-4">EDGE CASES TO TEST BEFORE DEPLOYING</div>
                   <div className="space-y-3">
                     {Object.entries(edgeCases).map(([severity, items]) => items.map((issue, idx) => (
-                      <div key={`${severity}-${idx}`} className="bg-[#13151a] border border-gray-800 rounded p-4">
-                        <div className="flex items-start gap-2 mb-2">
+                      <div key={`${severity}-${idx}`} className="bg-[#13151a] border border-gray-800 rounded-lg" style={{ padding: '16px 20px' }}>
+                        <div className="flex items-start gap-2 mb-3">
                           <span
                             className="text-xs px-2 py-0.5 rounded font-mono uppercase"
                             style={{
@@ -700,8 +776,8 @@ export default function App() {
                             {severity}
                           </span>
                         </div>
-                        <div className="text-white text-sm mb-1">{issue.title}</div>
-                        <div className="text-gray-500 text-xs">{issue.description}</div>
+                        <div className="text-white text-sm mb-2">{issue.title}</div>
+                        <div className="text-gray-500 text-xs" style={{ lineHeight: '1.5' }}>{issue.description}</div>
                       </div>
                     )))}
                   </div>
@@ -713,7 +789,7 @@ export default function App() {
                 <div className="text-green-500 text-xs font-mono uppercase tracking-wider mb-4">TOP FIXES BEFORE YOU BUILD</div>
                 <div className="space-y-3">
                   {fixes.map((fix, idx) => (
-                    <div key={idx} className="bg-[#13151a] border border-gray-800 rounded p-4 flex gap-4">
+                    <div key={idx} className="bg-[#13151a] border border-gray-800 rounded-lg flex gap-4" style={{ padding: '16px 20px' }}>
                       <div className="w-8 h-8 bg-green-500/20 text-green-500 rounded flex items-center justify-center text-sm font-mono flex-shrink-0">
                         {idx + 1}
                       </div>
