@@ -269,11 +269,11 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#1e2128] text-gray-400" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       {/* Header */}
-      <div className="border-b border-gray-800 px-8 py-6">
+      <div className="border-b border-gray-800 px-6 py-4">
         <div className="flex items-start justify-between max-w-7xl mx-auto">
           <div>
-            <div className="flex items-center gap-3 mb-1">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-cyan-400">
+            <div className="flex items-center gap-2 mb-0.5">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-cyan-400">
                 <rect x="7" y="6" width="10" height="11" stroke="currentColor" strokeWidth="1.5" />
                 <rect x="9.5" y="8.5" width="1.5" height="1.5" fill="currentColor" />
                 <rect x="13" y="8.5" width="1.5" height="1.5" fill="currentColor" />
@@ -284,61 +284,61 @@ export default function App() {
                 <line x1="9" y1="17" x2="9" y2="20" stroke="currentColor" strokeWidth="1.5" />
                 <line x1="15" y1="17" x2="15" y2="20" stroke="currentColor" strokeWidth="1.5" />
               </svg>
-              <h1 className="text-xl font-medium text-white">buildwise</h1>
+              <h1 className="text-2xl font-medium text-white">buildwise</h1>
             </div>
-            <p className="text-xs text-gray-500 ml-9">reality-checked robot builds</p>
+            <p className="text-xs text-gray-500 ml-6">reality-checked robot builds</p>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
             <input
               type="password"
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
               placeholder="key"
-              className="bg-transparent border-none outline-none text-sm text-gray-600 placeholder:text-gray-700 w-16"
+              className="bg-transparent border-none outline-none text-xs text-gray-600 placeholder:text-gray-700 w-12"
             />
-            <span className="text-sm text-gray-600">${budget}</span>
+            <span className="text-xs text-gray-600">${budget}</span>
           </div>
         </div>
       </div>
 
-      <main className="px-12 py-12 max-w-6xl mx-auto">
+      <main className="px-8 py-8 max-w-6xl mx-auto">
         {/* Step 1 - Describe Robot */}
-        <div className="mb-16">
-          <div className="flex items-center gap-4 mb-8 cursor-pointer group" onClick={() => currentStep > 1 && setCurrentStep(1)}>
-            <div className="bg-cyan-400 text-black px-3 py-1 text-sm font-mono rounded">01</div>
-            <h2 className="text-base text-gray-400 font-mono">describe robot</h2>
+        <div className="mb-12">
+          <div className="flex items-center gap-3 mb-6 cursor-pointer group" onClick={() => currentStep > 1 && setCurrentStep(1)}>
+            <div className="bg-cyan-400 text-black px-2.5 py-1 text-xs font-mono rounded">01</div>
+            <h2 className="text-sm text-gray-400 font-mono">describe robot</h2>
             {currentStep > 1 && <ChevronDown className="w-4 h-4 text-gray-600 group-hover:text-gray-500" />}
           </div>
 
           {currentStep === 1 && (
-            <div className="ml-0 border-l-4 border-cyan-400 pl-12">
+            <div className="ml-0 border-l-2 border-cyan-400 pl-8">
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="what should this thing do..."
-                className="w-full h-48 bg-[#13151a] text-gray-400 placeholder:text-gray-700 p-6 rounded-lg border border-gray-800 outline-none resize-none text-base mb-10"
+                className="w-full h-36 bg-[#13151a] text-gray-400 placeholder:text-gray-700 p-4 rounded-lg border border-gray-800 outline-none resize-none text-sm mb-6"
               />
 
-              <div className="mb-10">
-                <div className="text-xs text-gray-600 mb-4 uppercase tracking-wider font-mono">BUDGET</div>
-                <div className="inline-block bg-[#13151a] border border-gray-800 rounded px-6 py-3">
+              <div className="mb-6">
+                <div className="text-xs text-gray-600 mb-3 uppercase tracking-wider font-mono">BUDGET</div>
+                <div className="inline-block bg-[#13151a] border border-gray-800 rounded px-4 py-2">
                   <input
                     type="text"
                     value={`$${budget}`}
                     onChange={(e) => setBudget(e.target.value.replace('$', ''))}
-                    className="bg-transparent border-none outline-none text-white text-base w-20 font-mono"
+                    className="bg-transparent border-none outline-none text-white text-sm w-16 font-mono"
                   />
                 </div>
               </div>
 
-              <div className="mb-10">
-                <div className="text-xs text-gray-600 mb-4 uppercase tracking-wider font-mono">TAGS</div>
-                <div className="flex flex-wrap gap-3">
+              <div className="mb-6">
+                <div className="text-xs text-gray-600 mb-3 uppercase tracking-wider font-mono">TAGS</div>
+                <div className="flex flex-wrap gap-2">
                   {quickPrompts.map(tag => (
                     <button
                       key={tag}
                       onClick={() => toggleTag(tag)}
-                      className={`px-4 py-2 rounded text-sm font-mono transition-colors ${
+                      className={`px-3 py-1.5 rounded text-xs font-mono transition-colors ${
                         selectedTags.includes(tag)
                           ? 'bg-[#13151a] text-gray-400 border border-gray-700'
                           : 'bg-transparent text-gray-700 border border-gray-800 hover:border-gray-700'
@@ -352,7 +352,7 @@ export default function App() {
 
               <button
                 onClick={() => setCurrentStep(2)}
-                className="bg-cyan-400 text-black px-6 py-3 rounded text-sm font-medium hover:bg-cyan-300 transition-colors"
+                className="bg-cyan-400 text-black px-5 py-2 rounded text-xs font-medium hover:bg-cyan-300 transition-colors"
               >
                 generate list &gt;
               </button>
@@ -360,7 +360,7 @@ export default function App() {
           )}
 
           {currentStep > 1 && (
-            <div className="ml-12 text-sm text-gray-600 font-mono">
+            <div className="ml-8 text-xs text-gray-600 font-mono">
               ...
             </div>
           )}
@@ -368,20 +368,20 @@ export default function App() {
 
         {/* Step 2 - Parts List */}
         {currentStep >= 2 && (
-          <div className="mb-16">
-            <div className="flex items-center gap-4 mb-8 cursor-pointer group" onClick={() => currentStep > 2 && setCurrentStep(2)}>
-              <div className="bg-cyan-400 text-black px-3 py-1 text-sm font-mono rounded">02</div>
-              <h2 className="text-base text-gray-400 font-mono">parts list</h2>
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-6 cursor-pointer group" onClick={() => currentStep > 2 && setCurrentStep(2)}>
+              <div className="bg-cyan-400 text-black px-2.5 py-1 text-xs font-mono rounded">02</div>
+              <h2 className="text-sm text-gray-400 font-mono">parts list</h2>
               {currentStep > 2 && <ChevronDown className="w-4 h-4 text-gray-600 group-hover:text-gray-500" />}
             </div>
 
             {currentStep === 2 && (
-              <div className="ml-0 border-l-4 border-cyan-400 pl-12">
+              <div className="ml-0 border-l-2 border-cyan-400 pl-8">
                 {/* Tabs */}
-                <div className="flex gap-3 mb-8">
+                <div className="flex gap-2 mb-6">
                   <button
                     onClick={() => setViewMode('parts')}
-                    className={`px-5 py-2.5 text-sm font-mono rounded transition-colors ${
+                    className={`px-4 py-2 text-xs font-mono rounded transition-colors ${
                       viewMode === 'parts'
                         ? 'bg-cyan-400 text-black'
                         : 'bg-transparent text-gray-600 hover:text-gray-500'
@@ -391,7 +391,7 @@ export default function App() {
                   </button>
                   <button
                     onClick={() => setViewMode('community')}
-                    className={`px-5 py-2.5 text-sm font-mono rounded transition-colors ${
+                    className={`px-4 py-2 text-xs font-mono rounded transition-colors ${
                       viewMode === 'community'
                         ? 'bg-cyan-400 text-black'
                         : 'bg-transparent text-gray-600 hover:text-gray-500'
@@ -404,34 +404,34 @@ export default function App() {
                 {viewMode === 'parts' ? (
                   <>
                     {/* Stats */}
-                    <div className="flex gap-16 mb-10 text-sm">
+                    <div className="flex gap-12 mb-6 text-sm">
                       <div>
-                        <div className="text-white text-3xl font-light">${totalCost.toFixed(2)}</div>
-                        <div className="text-gray-600 text-sm font-mono">total</div>
+                        <div className="text-white text-2xl font-light">${totalCost.toFixed(2)}</div>
+                        <div className="text-gray-600 text-xs font-mono">total</div>
                       </div>
                       <div>
-                        <div className="text-white text-3xl font-light">{avgCompatibility}%</div>
-                        <div className="text-gray-600 text-sm font-mono">avg compat</div>
+                        <div className="text-white text-2xl font-light">{avgCompatibility}%</div>
+                        <div className="text-gray-600 text-xs font-mono">avg compat</div>
                       </div>
                       <div>
-                        <div className="text-white text-3xl font-light">{components.length}</div>
-                        <div className="text-gray-600 text-sm font-mono">parts</div>
+                        <div className="text-white text-2xl font-light">{components.length}</div>
+                        <div className="text-gray-600 text-xs font-mono">parts</div>
                       </div>
                     </div>
 
                     {/* Components List */}
-                    <div className="space-y-6">
+                    <div className="space-y-4">
                       {components.map((comp, idx) => (
                         <div key={idx} className="group">
-                          <div className="flex items-start justify-between mb-2">
+                          <div className="flex items-start justify-between mb-1">
                             <div className="flex-1">
-                              <div className="text-sm text-gray-600 font-mono mb-2 flex items-center gap-2">
+                              <div className="text-xs text-gray-600 font-mono mb-1 flex items-center gap-1.5">
                                 <span>{comp.category}</span>
                                 <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-50" />
                               </div>
-                              <div className="text-white text-base mb-2">{comp.name}</div>
-                              <div className="text-gray-600 text-sm mb-3">{comp.description}</div>
-                              <div className="flex items-center gap-4 text-sm font-mono">
+                              <div className="text-white text-sm mb-1">{comp.name}</div>
+                              <div className="text-gray-600 text-xs mb-2">{comp.description}</div>
+                              <div className="flex items-center gap-3 text-xs font-mono">
                                 <a href="#" className="text-gray-600 hover:text-cyan-400 flex items-center gap-1">
                                   amzn <ExternalLink className="w-3 h-3" />
                                 </a>
@@ -440,10 +440,10 @@ export default function App() {
                                 </a>
                               </div>
                             </div>
-                            <div className="text-right ml-8">
-                              <div className="text-white text-base mb-3">${comp.price.toFixed(2)}</div>
-                              <div className="flex items-center gap-3">
-                                <div className="w-24 h-2 bg-gray-800 rounded-full overflow-hidden">
+                            <div className="text-right ml-6">
+                              <div className="text-white text-sm mb-2">${comp.price.toFixed(2)}</div>
+                              <div className="flex items-center gap-2">
+                                <div className="w-20 h-1.5 bg-gray-800 rounded-full overflow-hidden">
                                   <div
                                     className="h-full rounded-full"
                                     style={{
@@ -452,7 +452,7 @@ export default function App() {
                                     }}
                                   />
                                 </div>
-                                <span className="text-sm text-gray-600 font-mono">{comp.compatibility}</span>
+                                <span className="text-xs text-gray-600 font-mono">{comp.compatibility}</span>
                               </div>
                             </div>
                           </div>
@@ -462,41 +462,41 @@ export default function App() {
 
                     <button
                       onClick={() => setCurrentStep(3)}
-                      className="bg-cyan-400 text-black px-6 py-3 rounded text-sm font-medium hover:bg-cyan-300 transition-colors mt-10"
+                      className="bg-cyan-400 text-black px-5 py-2 rounded text-xs font-medium hover:bg-cyan-300 transition-colors mt-6"
                     >
                       render bot &gt;
                     </button>
                   </>
                 ) : (
                   <>
-                    <div className="text-sm text-gray-600 mb-6 font-mono">
+                    <div className="text-xs text-gray-600 mb-4 font-mono">
                       Builds matched to your requirements • Sorted by success rate
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-2 gap-4">
                       {communityBuilds.map((build, idx) => (
                         <div key={idx} className="bg-[#13151a] border border-gray-800 rounded overflow-hidden hover:border-gray-700 transition-colors">
                           {/* Image */}
-                          <div className="relative h-56 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                            <div className="text-gray-700 text-sm">Image placeholder</div>
-                            <div className="absolute top-4 right-4 bg-green-500 text-white text-sm px-3 py-1.5 rounded font-mono flex items-center gap-1.5">
+                          <div className="relative h-40 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                            <div className="text-gray-700 text-xs">Image placeholder</div>
+                            <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded font-mono flex items-center gap-1">
                               <span>✓</span> {build.successRate}%
                             </div>
                           </div>
 
                           {/* Content */}
-                          <div className="p-6">
-                            <div className="flex items-start justify-between mb-3">
-                              <div className="text-white text-base font-medium">{build.name}</div>
-                              <div className="text-cyan-400 text-base font-mono">${build.totalCost}</div>
+                          <div className="p-4">
+                            <div className="flex items-start justify-between mb-2">
+                              <div className="text-white text-sm font-medium">{build.name}</div>
+                              <div className="text-cyan-400 text-sm font-mono">${build.totalCost}</div>
                             </div>
 
-                            <div className="text-gray-500 text-sm mb-4">{build.description}</div>
+                            <div className="text-gray-500 text-xs mb-3">{build.description}</div>
 
-                            <div className="flex items-center gap-4 text-sm font-mono text-gray-600 mb-4">
+                            <div className="flex items-center gap-3 text-xs font-mono text-gray-600 mb-3">
                               <span>👥 {build.builds} builds</span>
                               <span>⏱ {build.reviews.length * 4} hours</span>
-                              <span className={`px-2.5 py-1 rounded ${
+                              <span className={`px-2 py-0.5 rounded ${
                                 build.difficulty === 'Beginner' ? 'bg-green-500/20 text-green-500' :
                                 build.difficulty === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-500' :
                                 'bg-red-500/20 text-red-500'
@@ -505,18 +505,18 @@ export default function App() {
                               </span>
                             </div>
 
-                            <div className="flex flex-wrap gap-2 mb-4">
+                            <div className="flex flex-wrap gap-1.5 mb-3">
                               {build.tags.map((tag, i) => (
-                                <span key={i} className="text-sm bg-gray-800 text-gray-500 px-3 py-1 rounded font-mono">
+                                <span key={i} className="text-xs bg-gray-800 text-gray-500 px-2 py-0.5 rounded font-mono">
                                   {tag}
                                 </span>
                               ))}
                             </div>
 
-                            <div className="space-y-3 mb-5">
+                            <div className="space-y-2 mb-4">
                               {build.reviews.slice(0, 2).map((review, i) => (
-                                <div key={i} className="text-sm">
-                                  <div className="flex items-center gap-1.5 mb-1">
+                                <div key={i} className="text-xs">
+                                  <div className="flex items-center gap-1 mb-0.5">
                                     <span className="text-yellow-500">{'★'.repeat(review.rating)}</span>
                                     <span className="text-gray-600">✓</span>
                                   </div>
@@ -525,7 +525,7 @@ export default function App() {
                               ))}
                             </div>
 
-                            <button className="w-full bg-transparent border border-cyan-400/30 text-cyan-400 px-5 py-2.5 rounded text-sm font-medium hover:bg-cyan-400/10 transition-colors">
+                            <button className="w-full bg-transparent border border-cyan-400/30 text-cyan-400 px-4 py-2 rounded text-xs font-medium hover:bg-cyan-400/10 transition-colors">
                               Select This Build
                             </button>
                           </div>
@@ -535,7 +535,7 @@ export default function App() {
 
                     <button
                       onClick={() => setCurrentStep(3)}
-                      className="bg-cyan-400 text-black px-6 py-3 rounded text-sm font-medium hover:bg-cyan-300 transition-colors mt-10"
+                      className="bg-cyan-400 text-black px-5 py-2 rounded text-xs font-medium hover:bg-cyan-300 transition-colors mt-6"
                     >
                       continue &gt;
                     </button>
@@ -545,7 +545,7 @@ export default function App() {
             )}
 
             {currentStep > 2 && (
-              <div className="ml-12 text-sm text-gray-600 font-mono">
+              <div className="ml-8 text-xs text-gray-600 font-mono">
                 {components.length} parts / ${totalCost.toFixed(2)}
               </div>
             )}
@@ -554,33 +554,33 @@ export default function App() {
 
         {/* Step 3 - 3D Render */}
         {currentStep >= 3 && (
-          <div className="mb-16">
-            <div className="flex items-center gap-4 mb-8 cursor-pointer group" onClick={() => currentStep > 3 && setCurrentStep(3)}>
-              <div className="bg-cyan-400 text-black px-3 py-1 text-sm font-mono rounded">03</div>
-              <h2 className="text-base text-gray-400 font-mono">3d render</h2>
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-6 cursor-pointer group" onClick={() => currentStep > 3 && setCurrentStep(3)}>
+              <div className="bg-cyan-400 text-black px-2.5 py-1 text-xs font-mono rounded">03</div>
+              <h2 className="text-sm text-gray-400 font-mono">3d render</h2>
               {currentStep > 3 && <ChevronDown className="w-4 h-4 text-gray-600 group-hover:text-gray-500" />}
             </div>
 
             {currentStep === 3 && (
-              <div className="ml-0 border-l-4 border-cyan-400 pl-12">
-                <div className="bg-[#13151a] border border-gray-800 rounded p-10 mb-8">
-                  <div className="flex gap-12">
+              <div className="ml-0 border-l-2 border-cyan-400 pl-8">
+                <div className="bg-[#13151a] border border-gray-800 rounded p-6 mb-6">
+                  <div className="flex gap-8">
                     {/* 3D View */}
                     <div className="flex-1 aspect-video bg-gradient-to-br from-[#1e2937] to-[#0f1419] rounded flex items-center justify-center">
-                      <div className="text-gray-700 text-base font-mono">[3D Render Placeholder]</div>
+                      <div className="text-gray-700 text-sm font-mono">[3D Render Placeholder]</div>
                     </div>
 
                     {/* Component Legend */}
-                    <div className="w-72">
-                      <div className="text-sm text-gray-600 mb-6 uppercase tracking-wider font-mono">COMPONENT LEGEND</div>
-                      <div className="space-y-3">
+                    <div className="w-56">
+                      <div className="text-xs text-gray-600 mb-4 uppercase tracking-wider font-mono">COMPONENT LEGEND</div>
+                      <div className="space-y-2">
                         {componentLegend.map((item, idx) => (
-                          <div key={idx} className="flex items-center gap-3">
+                          <div key={idx} className="flex items-center gap-2">
                             <div
-                              className="w-4 h-4 rounded-full"
+                              className="w-3 h-3 rounded-full"
                               style={{ backgroundColor: item.color }}
                             />
-                            <span className="text-base text-gray-400">{item.name}</span>
+                            <span className="text-sm text-gray-400">{item.name}</span>
                           </div>
                         ))}
                       </div>
@@ -588,13 +588,13 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="text-sm text-gray-600 font-mono mb-10">
+                <div className="text-xs text-gray-600 font-mono mb-6">
                   BUILD: INDOOR NAVIGATOR PRO • 127 SUCCESSFUL BUILDS
                 </div>
 
                 <button
                   onClick={() => setCurrentStep(4)}
-                  className="bg-cyan-400 text-black px-6 py-3 rounded text-sm font-medium hover:bg-cyan-300 transition-colors"
+                  className="bg-cyan-400 text-black px-5 py-2 rounded text-xs font-medium hover:bg-cyan-300 transition-colors"
                 >
                   Analyze Build &gt;
                 </button>
@@ -602,7 +602,7 @@ export default function App() {
             )}
 
             {currentStep > 3 && (
-              <div className="ml-12 text-sm text-gray-600 font-mono">
+              <div className="ml-8 text-xs text-gray-600 font-mono">
                 3D render generated
               </div>
             )}
@@ -611,45 +611,45 @@ export default function App() {
 
         {/* Step 4 - Reality Check */}
         {currentStep >= 4 && (
-          <div className="mb-16">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="bg-cyan-400 text-black px-3 py-1 text-sm font-mono rounded">04</div>
-              <h2 className="text-base text-gray-400 font-mono">reality check</h2>
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="bg-cyan-400 text-black px-2.5 py-1 text-xs font-mono rounded">04</div>
+              <h2 className="text-sm text-gray-400 font-mono">reality check</h2>
             </div>
 
-            <div className="ml-0 border-l-4 border-cyan-400 pl-12">
+            <div className="ml-0 border-l-2 border-cyan-400 pl-8">
               {/* Score Circle */}
-              <div className="bg-[#13151a] border border-yellow-600/50 rounded p-10 mb-10">
-                <div className="flex items-center gap-16">
-                  <div className="relative w-40 h-40">
-                    <svg className="w-40 h-40 transform -rotate-90">
+              <div className="bg-[#13151a] border border-yellow-600/50 rounded p-6 mb-6">
+                <div className="flex items-center gap-8">
+                  <div className="relative w-28 h-28">
+                    <svg className="w-28 h-28 transform -rotate-90">
                       <circle
-                        cx="80"
-                        cy="80"
-                        r="70"
+                        cx="56"
+                        cy="56"
+                        r="50"
                         stroke="#374151"
-                        strokeWidth="10"
+                        strokeWidth="8"
                         fill="none"
                       />
                       <circle
-                        cx="80"
-                        cy="80"
-                        r="70"
+                        cx="56"
+                        cy="56"
+                        r="50"
                         stroke="#f59e0b"
-                        strokeWidth="10"
+                        strokeWidth="8"
                         fill="none"
-                        strokeDasharray={`${65 * 4.398} 439.8`}
+                        strokeDasharray={`${65 * 3.14} 314`}
                         strokeLinecap="round"
                       />
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center flex-col">
-                      <div className="text-white text-4xl font-light">65</div>
-                      <div className="text-gray-600 text-sm font-mono">/100</div>
+                      <div className="text-white text-3xl font-light">65</div>
+                      <div className="text-gray-600 text-xs font-mono">/100</div>
                     </div>
                   </div>
                   <div>
-                    <div className="text-yellow-500 text-xl font-mono uppercase tracking-wider mb-3">PROCEED WITH CAUTION</div>
-                    <div className="text-gray-400 text-base">
+                    <div className="text-yellow-500 text-base font-mono uppercase tracking-wider mb-2">PROCEED WITH CAUTION</div>
+                    <div className="text-gray-400 text-sm">
                       Your design has critical power and sensor placement issues that will cause failures in<br />
                       real-world deployment. Address the high-severity items before building.
                     </div>
@@ -658,16 +658,16 @@ export default function App() {
               </div>
 
               {/* Issues Grid */}
-              <div className="grid grid-cols-2 gap-8 mb-10">
+              <div className="grid grid-cols-2 gap-6 mb-6">
                 {/* Problems */}
                 <div>
-                  <div className="text-red-500 text-sm font-mono uppercase tracking-wider mb-6">WHAT WILL BREAK IN THE REAL WORLD</div>
-                  <div className="space-y-4">
+                  <div className="text-red-500 text-xs font-mono uppercase tracking-wider mb-4">WHAT WILL BREAK IN THE REAL WORLD</div>
+                  <div className="space-y-3">
                     {Object.entries(issues).map(([severity, items]) => items.map((issue, idx) => (
-                      <div key={`${severity}-${idx}`} className="bg-[#13151a] border border-gray-800 rounded p-5">
-                        <div className="flex items-start gap-2 mb-3">
+                      <div key={`${severity}-${idx}`} className="bg-[#13151a] border border-gray-800 rounded p-4">
+                        <div className="flex items-start gap-2 mb-2">
                           <span
-                            className="text-sm px-3 py-1 rounded font-mono uppercase"
+                            className="text-xs px-2 py-0.5 rounded font-mono uppercase"
                             style={{
                               backgroundColor: `${getSeverityColor(severity.toUpperCase())}20`,
                               color: getSeverityColor(severity.toUpperCase())
@@ -676,8 +676,8 @@ export default function App() {
                             {severity}
                           </span>
                         </div>
-                        <div className="text-white text-base mb-2">{issue.title}</div>
-                        <div className="text-gray-500 text-sm">{issue.description}</div>
+                        <div className="text-white text-sm mb-1">{issue.title}</div>
+                        <div className="text-gray-500 text-xs">{issue.description}</div>
                       </div>
                     )))}
                   </div>
@@ -685,13 +685,13 @@ export default function App() {
 
                 {/* Edge Cases */}
                 <div>
-                  <div className="text-cyan-400 text-sm font-mono uppercase tracking-wider mb-6">EDGE CASES TO TEST BEFORE DEPLOYING</div>
-                  <div className="space-y-4">
+                  <div className="text-cyan-400 text-xs font-mono uppercase tracking-wider mb-4">EDGE CASES TO TEST BEFORE DEPLOYING</div>
+                  <div className="space-y-3">
                     {Object.entries(edgeCases).map(([severity, items]) => items.map((issue, idx) => (
-                      <div key={`${severity}-${idx}`} className="bg-[#13151a] border border-gray-800 rounded p-5">
-                        <div className="flex items-start gap-2 mb-3">
+                      <div key={`${severity}-${idx}`} className="bg-[#13151a] border border-gray-800 rounded p-4">
+                        <div className="flex items-start gap-2 mb-2">
                           <span
-                            className="text-sm px-3 py-1 rounded font-mono uppercase"
+                            className="text-xs px-2 py-0.5 rounded font-mono uppercase"
                             style={{
                               backgroundColor: `${getSeverityColor(severity.toUpperCase())}20`,
                               color: getSeverityColor(severity.toUpperCase())
@@ -700,8 +700,8 @@ export default function App() {
                             {severity}
                           </span>
                         </div>
-                        <div className="text-white text-base mb-2">{issue.title}</div>
-                        <div className="text-gray-500 text-sm">{issue.description}</div>
+                        <div className="text-white text-sm mb-1">{issue.title}</div>
+                        <div className="text-gray-500 text-xs">{issue.description}</div>
                       </div>
                     )))}
                   </div>
@@ -710,16 +710,16 @@ export default function App() {
 
               {/* Top Fixes */}
               <div>
-                <div className="text-green-500 text-sm font-mono uppercase tracking-wider mb-6">TOP FIXES BEFORE YOU BUILD</div>
-                <div className="space-y-4">
+                <div className="text-green-500 text-xs font-mono uppercase tracking-wider mb-4">TOP FIXES BEFORE YOU BUILD</div>
+                <div className="space-y-3">
                   {fixes.map((fix, idx) => (
-                    <div key={idx} className="bg-[#13151a] border border-gray-800 rounded p-5 flex gap-5">
-                      <div className="w-10 h-10 bg-green-500/20 text-green-500 rounded flex items-center justify-center text-base font-mono flex-shrink-0">
+                    <div key={idx} className="bg-[#13151a] border border-gray-800 rounded p-4 flex gap-4">
+                      <div className="w-8 h-8 bg-green-500/20 text-green-500 rounded flex items-center justify-center text-sm font-mono flex-shrink-0">
                         {idx + 1}
                       </div>
                       <div className="flex-1">
-                        <div className="text-white text-base mb-2">{fix.title}</div>
-                        <div className="text-gray-500 text-sm">{fix.action}</div>
+                        <div className="text-white text-sm mb-1">{fix.title}</div>
+                        <div className="text-gray-500 text-xs">{fix.action}</div>
                       </div>
                     </div>
                   ))}
